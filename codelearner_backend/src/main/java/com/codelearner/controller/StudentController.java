@@ -1,5 +1,6 @@
 package com.codelearner.controller;
 
+import com.codelearner.dto.LoginResponse;
 import com.codelearner.model.Student;
 import com.codelearner.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,6 @@ public class StudentController {
     public ResponseEntity<?> registerStudent(@RequestBody Student student) {
         Student existing = studentRepository.findByEmail(student.getEmail());
         if (existing != null) {
-            // Return 409 Conflict with a message
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already registered");
         }
         Student saved = studentRepository.save(student);
@@ -30,7 +30,12 @@ public class StudentController {
     public ResponseEntity<?> loginStudent(@RequestBody Student loginData) {
         Student found = studentRepository.findByEmail(loginData.getEmail());
         if (found != null && found.getPassword().equals(loginData.getPassword())) {
-            return ResponseEntity.ok(found);
+            LoginResponse response = new LoginResponse(
+                found.getId(),
+                found.getEmail(),
+                found.getFullName()
+            );
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password");
         }
