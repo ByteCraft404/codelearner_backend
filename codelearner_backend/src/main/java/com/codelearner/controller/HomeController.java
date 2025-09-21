@@ -21,7 +21,7 @@ public class HomeController {
                 <head>
                     <meta charset="utf-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <title>CodeLearner API — Status</title>
+                    <title>CodeLearner API Status</title>
                     <style>
                         body { font-family: Arial, sans-serif; background:#0f172a; color:#e6eef8; }
                         .wrap { display:flex; justify-content:center; align-items:center; height:100vh; }
@@ -38,7 +38,7 @@ public class HomeController {
                 <body>
                 <div class="wrap">
                     <div class="card">
-                        <h1>CodeLearner API — Operational</h1>
+                        <h1>CodeLearner API is Operational</h1>
                         <div class="sub">Backend is live and ready to handle requests.</div>
                         <div class="status">
                             <span class="badge ok">✅ Services Running</span>
